@@ -5,15 +5,20 @@
         <RootNamespace>log4net.Appender.Azure</RootNamespace>
         <AssemblyTitle>log4net.Appender.Azure</AssemblyTitle>
         <Product>log4net.Appender.Azure</Product>
-        <Version>1.5.0</Version>
+        <Version>2.0.0</Version>
         <Authors>Dave Murray, Karell Ste-Marie</Authors>
         <Company />
-        <RepositoryUrl>https://github.com/irongut/log4net.Azure</RepositoryUrl>
+        <RepositoryUrl>https://github.com/irongut/log4net.Appender.Azure</RepositoryUrl>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <Copyright>(c) 2020 Dave Murray, (c) 2015 Karell Ste-Marie</Copyright>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageTags>log4net, azure, appender, logging, log, logfiles, diagnostics</PackageTags>
         <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+        <Description>log4net Appenders for Azure Table and Blob support
+Forked from log4net.Appender.Azure by karell.stemarie, added .Net Standard 2.0 compatibility and updated to the latest Azure Storage libraries.</Description>
+        <PackageProjectUrl>https://github.com/irongut/log4net.Appender.Azure</PackageProjectUrl>
+        <PackageId>log4net.Appender.Azure.2</PackageId>
+        <PackageReleaseNotes>Forked from log4net.Appender.Azure by karell.stemarie, added .Net Standard 2.0 compatibility and updated to the latest Azure Storage libraries.</PackageReleaseNotes>
     </PropertyGroup>
     
     <ItemGroup>
