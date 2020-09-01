@@ -1,8 +1,8 @@
+using log4net.Core;
+using Microsoft.Azure.Cosmos.Table;
 using System;
 using System.Collections;
 using System.Text;
-using Microsoft.WindowsAzure.Storage.Table;
-using log4net.Core;
 
 namespace log4net.Appender.Azure
 {

@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
-using Microsoft.WindowsAzure.Storage.Table;
-using log4net.Core;
+﻿using log4net.Core;
 using log4net.Layout;
+using Microsoft.Azure.Cosmos.Table;
+using System;
+using System.IO;
 
 namespace log4net.Appender.Azure
 {

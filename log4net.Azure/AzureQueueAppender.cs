@@ -1,8 +1,7 @@
-﻿using log4net.Appender.Azure.Language;
+﻿using Azure.Storage.Queues;
+using log4net.Appender.Azure.Language;
 using log4net.Core;
 using log4net.Layout;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Queue;
 using System;
 using System.Threading.Tasks;
 
@@ -17,9 +16,8 @@ namespace log4net.Appender.Azure
     /// </remarks>
     public class AzureQueueAppender : BufferingAppenderSkeleton
     {
-        private CloudStorageAccount _account;
-        private CloudQueueClient _queueClient;
-        private CloudQueue _queue;
+        private QueueServiceClient _account;
+        private QueueClient _queue;
         public string ConnectionStringName { get; set; }
         private string _connectionString;
 
@@ -39,7 +37,7 @@ namespace log4net.Appender.Azure
                 {
                     return Util.GetConnectionString(ConnectionStringName);
                 }
-                if (String.IsNullOrEmpty(_connectionString))
+                if (String.IsNullOrWhiteSpace(_connectionString))
                     throw new ApplicationException(Resources.AzureConnectionStringNotSpecified);
                 return _connectionString;
             }
@@ -54,7 +52,7 @@ namespace log4net.Appender.Azure
         {
             get
             {
-                if (String.IsNullOrEmpty(_queueName))
+                if (String.IsNullOrWhiteSpace(_queueName))
                     throw new ApplicationException(Resources.QueueNameNotSpecified);
                 return _queueName;
             }
@@ -80,9 +78,7 @@ namespace log4net.Appender.Azure
 
         private void ProcessEvent(LoggingEvent loggingEvent)
         {
-            // Create a message and add it to the queue.
-            CloudQueueMessage message = new CloudQueueMessage(RenderLoggingEvent(loggingEvent));
-            _queue.AddMessage(message);
+            _queue.SendMessage(RenderLoggingEvent(loggingEvent));
         }
         
         /// <summary>
@@ -98,29 +94,26 @@ namespace log4net.Appender.Azure
         {
             get { return true; }
         }
+
         /// <summary>
         /// Initialize the appender based on the options set
         /// </summary>
         /// <remarks>
         /// <para>
-        /// This is part of the <see cref="T:log4net.Core.IOptionHandler"/> delayed object
-        ///             activation scheme. The <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> method must 
-        ///             be called on this object after the configuration properties have
-        ///             been set. Until <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> is called this
-        ///             object is in an undefined state and must not be used. 
+        /// This is part of the <see cref="T:log4net.Core.IOptionHandler"/> delayed object activation scheme.
+        /// The <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> method must be called on this object after the configuration properties have been set.
+        /// Until <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> is called this object is in an undefined state and must not be used.
         /// </para>
         /// <para>
-        /// If any of the configuration properties are modified then 
-        ///             <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> must be called again.
+        /// If any of the configuration properties are modified then <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> must be called again.
         /// </para>
         /// </remarks>
         public override void ActivateOptions()
         {
             base.ActivateOptions();
 
-            _account = CloudStorageAccount.Parse(ConnectionString);
-            _queueClient = _account.CreateCloudQueueClient();
-            _queue = _queueClient.GetQueueReference(QueueName.ToLower());
+            _account = new QueueServiceClient(ConnectionString);
+            _queue = _account.GetQueueClient(QueueName.ToLower());
             _queue.CreateIfNotExists();
         }
     }

@@ -1,7 +1,7 @@
 using log4net.Appender.Azure.Extensions;
 using log4net.Core;
 using log4net.Util;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
 using System;
 using System.Collections.Generic;
 using System.Linq;

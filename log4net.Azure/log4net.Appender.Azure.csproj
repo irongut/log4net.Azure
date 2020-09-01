@@ -14,11 +14,13 @@
         <PackageTags>log4net, Azure Storage</PackageTags>
     </PropertyGroup>
     <ItemGroup>
+      <PackageReference Include="Azure.Storage.Blobs" Version="12.6.0" />
+      <PackageReference Include="Azure.Storage.Queues" Version="12.4.2" />
       <PackageReference Include="log4net" Version="2.0.9" />
+      <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.0.8" />
       <PackageReference Include="Microsoft.Azure.KeyVault" Version="3.0.5" />
       <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="3.0.5" />
       <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-      <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
     </ItemGroup>
     <ItemGroup>
       <Reference Include="System.Configuration" />

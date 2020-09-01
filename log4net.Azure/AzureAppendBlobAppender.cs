@@ -1,8 +1,8 @@
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Specialized;
 using log4net.Appender.Azure.Extensions;
 using log4net.Appender.Azure.Language;
 using log4net.Core;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Globalization;
 using System.IO;
@@ -13,9 +13,8 @@ namespace log4net.Appender.Azure
 {
     public class AzureAppendBlobAppender : BufferingAppenderSkeleton
     {
-        private CloudStorageAccount _account;
-        private CloudBlobClient _client;
-        private CloudBlobContainer _cloudBlobContainer;
+        private BlobServiceClient _account;
+        private BlobContainerClient _cloudBlobContainer;
 
         public string ConnectionStringName { get; set; }
         private string _connectionString;
@@ -29,7 +28,7 @@ namespace log4net.Appender.Azure
                 {
                     return Util.GetConnectionString(ConnectionStringName);
                 }
-                if (String.IsNullOrEmpty(_connectionString))
+                if (String.IsNullOrWhiteSpace(_connectionString))
                     throw new ApplicationException(Resources.AzureConnectionStringNotSpecified);
                 return _connectionString;
             }
@@ -45,7 +44,7 @@ namespace log4net.Appender.Azure
         {
             get
             {
-                if (String.IsNullOrEmpty(_containerName))
+                if (String.IsNullOrWhiteSpace(_containerName))
                     throw new ApplicationException(Resources.ContainerNameNotSpecified);
                 return _containerName;
             }
@@ -61,7 +60,7 @@ namespace log4net.Appender.Azure
         {
             get
             {
-                if (String.IsNullOrEmpty(_directoryName))
+                if (String.IsNullOrWhiteSpace(_directoryName))
                     throw new ApplicationException(Resources.DirectoryNameNotSpecified);
                 return _directoryName;
             }
@@ -82,8 +81,8 @@ namespace log4net.Appender.Azure
         /// </remarks>
         protected override void SendBuffer(LoggingEvent[] events)
         {
-            CloudAppendBlob appendBlob = _cloudBlobContainer.GetAppendBlobReference(Filename(_directoryName));
-            if (!appendBlob.Exists()) appendBlob.CreateOrReplace();
+            AppendBlobClient appendBlob = _cloudBlobContainer.GetAppendBlobClient(Filename(_directoryName));
+            if (!appendBlob.Exists()) appendBlob.Create();
             else _lineFeed = Environment.NewLine;
 
             Parallel.ForEach(events, ProcessEvent);
@@ -91,7 +90,7 @@ namespace log4net.Appender.Azure
 
         private void ProcessEvent(LoggingEvent loggingEvent)
         {
-            CloudAppendBlob appendBlob = _cloudBlobContainer.GetAppendBlobReference(Filename(_directoryName));
+            AppendBlobClient appendBlob = _cloudBlobContainer.GetAppendBlobClient(Filename(_directoryName));
             var xml = _lineFeed + loggingEvent.GetXmlString(Layout);
             using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(xml)))
             {
@@ -104,7 +103,7 @@ namespace log4net.Appender.Azure
             return string.Format("{0}/{1}.entry.log.xml",
                                  directoryName,
                                  DateTime.Today.ToString("yyyy_MM_dd",
-                                                                 DateTimeFormatInfo.InvariantInfo));
+                                 DateTimeFormatInfo.InvariantInfo));
         }
 
         /// <summary>
@@ -112,24 +111,20 @@ namespace log4net.Appender.Azure
         /// </summary>
         /// <remarks>
         /// <para>
-        /// This is part of the <see cref="T:log4net.Core.IOptionHandler"/> delayed object
-        ///             activation scheme. The <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> method must 
-        ///             be called on this object after the configuration properties have
-        ///             been set. Until <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> is called this
-        ///             object is in an undefined state and must not be used. 
+        /// This is part of the <see cref="T:log4net.Core.IOptionHandler"/> delayed object activation scheme.
+        /// The <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> method must be called on this object after the configuration properties have been set.
+        /// Until <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> is called this object is in an undefined state and must not be used.
         /// </para>
         /// <para>
-        /// If any of the configuration properties are modified then 
-        ///             <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> must be called again.
+        /// If any of the configuration properties are modified then <see cref="M:log4net.Appender.BufferingAppenderSkeleton.ActivateOptions"/> must be called again.
         /// </para>
         /// </remarks>
         public override void ActivateOptions()
         {
             base.ActivateOptions();
 
-            _account = CloudStorageAccount.Parse(ConnectionString);
-            _client = _account.CreateCloudBlobClient();
-            _cloudBlobContainer = _client.GetContainerReference(ContainerName.ToLower());
+            _account = new BlobServiceClient(ConnectionString);
+            _cloudBlobContainer = _account.GetBlobContainerClient(ContainerName.ToLower());
             _cloudBlobContainer.CreateIfNotExists();
         }
     }
