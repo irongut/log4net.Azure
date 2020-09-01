@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.WindowsAzure.Storage.Table;
 using log4net.Core;
 
-namespace log4net.Appender
+namespace log4net.Appender.Azure
 {
     internal sealed class AzureLoggingEventEntity : TableEntity
     {

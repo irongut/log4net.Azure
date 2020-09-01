@@ -1,6 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
+        <RootNamespace>log4net.Appender.Azure</RootNamespace>
+        <AssemblyTitle>log4net.Appender.Azure</AssemblyTitle>
+        <Product>log4net.Appender.Azure</Product>
         <Version>1.5.0</Version>
         <Authors>Dave Murray, Karell Ste-Marie</Authors>
         <Company />

@@ -1,4 +1,4 @@
-﻿using log4net.Appender;
+﻿using log4net.Appender.Azure;
 using log4net.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

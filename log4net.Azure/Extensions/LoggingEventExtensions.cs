@@ -5,7 +5,7 @@ using log4net.Core;
 using log4net.Layout;
 using System.IO;
 
-namespace log4net.Appender.Extensions
+namespace log4net.Appender.Azure.Extensions
 {
     internal static class LoggingEventExtensions
     {

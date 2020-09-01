@@ -1,15 +1,15 @@
-using System;
-using System.IO;
-using System.Text;
-using System.Globalization;
-using System.Threading.Tasks;
-using log4net.Appender.Extensions;
+using log4net.Appender.Azure.Extensions;
+using log4net.Appender.Azure.Language;
+using log4net.Core;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
-using log4net.Appender.Language;
-using log4net.Core;
+using System;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace log4net.Appender
+namespace log4net.Appender.Azure
 {
     public class AzureAppendBlobAppender : BufferingAppenderSkeleton
     {

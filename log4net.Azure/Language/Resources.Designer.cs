@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace log4net.Appender.Language {
+namespace log4net.Appender.Azure.Language {
     using System;
     
     

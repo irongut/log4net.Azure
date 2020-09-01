@@ -1,8 +1,8 @@
-﻿using log4net.Appender.Language;
+﻿using log4net.Appender.Azure.Language;
 using System;
 using System.Configuration;
 
-namespace log4net.Appender
+namespace log4net.Appender.Azure
 {
     public static class Util
     {

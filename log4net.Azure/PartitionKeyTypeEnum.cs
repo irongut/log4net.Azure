@@ -1,4 +1,4 @@
-namespace log4net.Appender
+namespace log4net.Appender.Azure
 {
     public enum PartitionKeyTypeEnum
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace log4net.Appender.Extensions
+namespace log4net.Appender.Azure.Extensions
 {
     internal static class EnumerableExtensions
     {

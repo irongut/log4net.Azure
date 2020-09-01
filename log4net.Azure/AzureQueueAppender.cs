@@ -1,4 +1,4 @@
-﻿using log4net.Appender.Language;
+﻿using log4net.Appender.Azure.Language;
 using log4net.Core;
 using log4net.Layout;
 using Microsoft.WindowsAzure.Storage;
@@ -6,7 +6,7 @@ using Microsoft.WindowsAzure.Storage.Queue;
 using System;
 using System.Threading.Tasks;
 
-namespace log4net.Appender
+namespace log4net.Appender.Azure
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="AzureQueueAppender" /> class.
