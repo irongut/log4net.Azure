@@ -14,11 +14,11 @@ namespace log4net.Azure.Tests
         public void Initialize()
         {
             _appender = new AzureBlobAppender()
-                {
-                    ConnectionString = "UseDevelopmentStorage=true",
-                    ContainerName = "testLoggingBlob",
-                    DirectoryName = "testLogging"
-                };
+            {
+                ConnectionString = "UseDevelopmentStorage=true",
+                ContainerName = "testLoggingBlob",
+                DirectoryName = "testLogging"
+            };
             _appender.ActivateOptions();
         }
 
@@ -26,7 +26,6 @@ namespace log4net.Azure.Tests
         public void Test_Blob_Appender()
         {
             var @event = MakeEvent();
-
             _appender.DoAppend(@event);
         }
 
@@ -62,18 +61,17 @@ namespace log4net.Azure.Tests
         {
             return new LoggingEvent(
                 new LoggingEventData
-                    {
-                        Domain = "testDomain",
-                        Identity = "testIdentity",
-                        Level = Level.Critical,
-                        LoggerName = "testLoggerName",
-                        Message = "testMessage",
-                        ThreadName = "testThreadName",
-                        TimeStamp = DateTime.UtcNow,
-                        UserName = "testUsername",
-                        LocationInfo = new LocationInfo("className", "methodName", "fileName", "lineNumber")
-                    }
-                );
+                {
+                    Domain = "testDomain",
+                    Identity = "testIdentity",
+                    Level = Level.Critical,
+                    LoggerName = "testLoggerName",
+                    Message = "testMessage",
+                    ThreadName = "testThreadName",
+                    TimeStampUtc = DateTime.UtcNow,
+                    UserName = "testUsername",
+                    LocationInfo = new LocationInfo("className", "methodName", "fileName", "lineNumber")
+                });
         }
     }
 }

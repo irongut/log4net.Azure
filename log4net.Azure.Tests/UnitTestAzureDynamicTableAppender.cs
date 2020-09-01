@@ -28,7 +28,6 @@ namespace log4net.Azure.Tests
         public void Test_DynamicTable_Appender()
         {
             var @event = MakeEvent();
-
             _appender.DoAppend(@event);
         }
 
@@ -70,20 +69,17 @@ namespace log4net.Azure.Tests
                 LoggerName = "testLoggerName",
                 Message = "testMessage",
                 ThreadName = "testThreadName",
-                TimeStamp = DateTime.UtcNow,
+                TimeStampUtc = DateTime.UtcNow,
                 UserName = "testUsername",
                 Properties = new PropertiesDictionary(),
                 LocationInfo = new LocationInfo("className", "methodName", "fileName", "lineNumber")
             };
 
             loggingEventData.Properties["test1"] = DateTime.UtcNow;
-            loggingEventData.Properties["Url"] = "http://google.de";
+            loggingEventData.Properties["Url"] = "https://google.com";
             loggingEventData.Properties["requestId"] = Guid.NewGuid();
 
-
-            return new LoggingEvent(
-                loggingEventData
-                );
+            return new LoggingEvent(loggingEventData);
         }
     }
 }

@@ -14,10 +14,10 @@ namespace log4net.Azure.Tests
         public void Initialize()
         {
             _appender = new AzureTableAppender()
-                {
-                    ConnectionString = "UseDevelopmentStorage=true",
-                    TableName = "testLoggingTable"
-                };
+            {
+                ConnectionString = "UseDevelopmentStorage=true",
+                TableName = "testLoggingTable"
+            };
             _appender.ActivateOptions();
         }
 
@@ -25,7 +25,6 @@ namespace log4net.Azure.Tests
         public void Test_Table_Appender()
         {
             var @event = MakeEvent();
-
             _appender.DoAppend(@event);
         }
 
@@ -34,9 +33,7 @@ namespace log4net.Azure.Tests
         {
             const string message = "Exception to follow on other line";
             var ex = new Exception("This is the exception message");
-
             var @event = new LoggingEvent(null, null, "testLoggerName", Level.Critical, message, ex);
-
             _appender.DoAppend(@event);
         }
 
@@ -72,18 +69,17 @@ namespace log4net.Azure.Tests
         {
             return new LoggingEvent(
                 new LoggingEventData
-                    {
-                        Domain = "testDomain",
-                        Identity = "testIdentity",
-                        Level = Level.Critical,
-                        LoggerName = "testLoggerName",
-                        Message = "testMessage",
-                        ThreadName = "testThreadName",
-                        TimeStamp = DateTime.UtcNow,
-                        UserName = "testUsername",
-                        LocationInfo = new LocationInfo("className", "methodName", "fileName", "lineNumber")
-                    }
-                );
+                {
+                    Domain = "testDomain",
+                    Identity = "testIdentity",
+                    Level = Level.Critical,
+                    LoggerName = "testLoggerName",
+                    Message = "testMessage",
+                    ThreadName = "testThreadName",
+                    TimeStampUtc = DateTime.UtcNow,
+                    UserName = "testUsername",
+                    LocationInfo = new LocationInfo("className", "methodName", "fileName", "lineNumber")
+                });
         }
     }
 }

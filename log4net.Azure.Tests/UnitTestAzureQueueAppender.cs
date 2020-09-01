@@ -26,8 +26,7 @@ namespace log4net.Azure.Tests
         public void Test_Queue_Appender()
         {
             var @event = MakeEvent();
-
-            _appender.DoAppend(@event);            
+            _appender.DoAppend(@event);
         }
 
         [TestMethod]
@@ -35,9 +34,7 @@ namespace log4net.Azure.Tests
         {
             const string message = "Exception to follow on other line";
             var ex = new Exception("This is the exception message");
-
             var @event = new LoggingEvent(null, null, "testLoggerName", Level.Critical, message, ex);
-
             _appender.DoAppend(@event);
         }
 
@@ -89,11 +86,10 @@ namespace log4net.Azure.Tests
                     LoggerName = "testLoggerName",
                     Message = "testMessage",
                     ThreadName = "testThreadName",
-                    TimeStamp = DateTime.UtcNow,
+                    TimeStampUtc = DateTime.UtcNow,
                     UserName = "testUsername",
                     LocationInfo = new LocationInfo("className", "methodName", "fileName", "lineNumber")
-                }
-                );
+                });
         }
     }
 }
