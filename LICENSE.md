@@ -1,5 +1,6 @@
 The MIT License (MIT)
 
+Copyright (c) 2020 Dave Murray
 Copyright (c) 2015 Karell Ste-Marie
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

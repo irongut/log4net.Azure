@@ -1,6 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
+        <Version>1.5.0</Version>
+        <Authors>Dave Murray, Karell Ste-Marie</Authors>
+        <Company />
+        <RepositoryUrl>https://github.com/irongut/log4net.Azure</RepositoryUrl>
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+        <Copyright>(c) 2020 Dave Murray, (c) 2015 Karell Ste-Marie</Copyright>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <PackageTags>log4net, Azure Storage</PackageTags>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="log4net" Version="2.0.9" />
@@ -10,9 +18,12 @@
       <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Properties\" />
+      <Reference Include="System.Configuration" />
     </ItemGroup>
     <ItemGroup>
-      <Reference Include="System.Configuration" />
+      <None Include="..\LICENSE.md">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
     </ItemGroup>
 </Project>
