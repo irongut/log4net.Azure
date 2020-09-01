@@ -7,7 +7,7 @@ namespace log4net.Appender
     public static class Util
     {
         /// <summary>
-        /// Attempt to retrieve the connection string using ConfigurationManager 
+        /// Attempt to retrieve the connection string using ConfigurationManager
         /// with CloudConfigurationManager as fallback
         /// </summary>
         /// <param name="connectionStringName">The name of the connection string to retrieve</param>
