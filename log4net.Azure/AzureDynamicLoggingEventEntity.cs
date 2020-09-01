@@ -22,7 +22,7 @@ namespace log4net.Appender.Azure
             {
                 this["Exception"] = e.ExceptionObject.ToString();
             }
-            
+
             foreach (DictionaryEntry entry in e.Properties)
             {
                 var key = entry.Key.ToString()

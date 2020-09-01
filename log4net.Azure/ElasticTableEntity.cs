@@ -88,10 +88,10 @@ namespace log4net.Appender.Azure
 			if (value is Guid) return new EntityProperty((Guid)value);
 			if (value is int) return new EntityProperty((int)value);
 			if (value is long) return new EntityProperty((long)value);
-			// ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
 			if (value is string) return new EntityProperty((string)value);
 			throw new Exception(string.Format(Resources.ElasticTableEntity_GetEntityProperty_not_supported__0__for__1_,
-				value.GetType(), key));
+											  value.GetType(),
+											  key));
 		}
 	}
 }

@@ -11,7 +11,7 @@ namespace log4net.Appender.Azure
     /// Initializes a new instance of the <see cref="AzureQueueAppender" /> class.
     /// </summary>
     /// <remarks>
-    /// The instance of the <see cref="AzureQueueAppender" /> class is set up to write 
+    /// The instance of the <see cref="AzureQueueAppender" /> class is set up to write
     /// to an azure storage queue
     /// </remarks>
     public class AzureQueueAppender : BufferingAppenderSkeleton
@@ -23,8 +23,10 @@ namespace log4net.Appender.Azure
 
         public AzureQueueAppender()
         {
-            PatternLayout layout = new PatternLayout();
-            layout.ConversionPattern = PatternLayout.DetailConversionPattern;
+            PatternLayout layout = new PatternLayout
+            {
+                ConversionPattern = PatternLayout.DetailConversionPattern
+            };
             layout.ActivateOptions();
             Layout = layout;
         }
@@ -80,7 +82,7 @@ namespace log4net.Appender.Azure
         {
             _queue.SendMessage(RenderLoggingEvent(loggingEvent));
         }
-        
+
         /// <summary>
         /// This appender requires a <see cref="Layout"/> to be set.
         /// </summary>

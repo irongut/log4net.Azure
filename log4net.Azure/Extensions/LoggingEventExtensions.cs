@@ -36,7 +36,7 @@ namespace log4net.Appender.Azure.Extensions
                 new XElement("Location", loggingEvent.LocationInformation.FullInfo)
                 );
 
-            if (loggingEvent.Properties != null && loggingEvent.Properties.Count > 0)
+            if (loggingEvent.Properties?.Count > 0)
             {
                 var props = loggingEvent.Properties;
                 if (props.Contains("AddPropertiesToXml"))

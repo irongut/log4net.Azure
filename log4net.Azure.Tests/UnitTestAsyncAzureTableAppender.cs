@@ -45,7 +45,7 @@ namespace log4net.Azure.Tests
                     Identity = "testIdentity",
                     Level = Level.Critical,
                     LoggerName = "testLoggerName",
-                    Message = "Long message - " + string.Join("-", Enumerable.Range(0,1024).Select(i => "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm")),
+                    Message = "Long message - " + string.Join("-", Enumerable.Range(0,1024).Select(_ => "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm")),
                     ThreadName = "testThreadName",
                     TimeStampUtc = DateTime.UtcNow,
                     UserName = "testUsername",

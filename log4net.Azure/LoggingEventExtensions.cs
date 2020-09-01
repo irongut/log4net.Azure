@@ -7,10 +7,9 @@ namespace log4net.Appender.Azure
 	{
 		internal static string MakeRowKey(this LoggingEvent loggingEvent)
 		{
-			return string.Format(
-				"{0:D19}.{1}",
-				 DateTime.MaxValue.Ticks - loggingEvent.TimeStamp.Ticks,
-				Guid.NewGuid().ToString().ToLower());
+			return string.Format("{0:D19}.{1}",
+								  DateTime.MaxValue.Ticks - loggingEvent.TimeStamp.Ticks,
+								  Guid.NewGuid().ToString().ToLower());
 		}
 
 		internal static string MakePartitionKey(this LoggingEvent loggingEvent, PartitionKeyTypeEnum partitionKeyType)
@@ -22,9 +21,7 @@ namespace log4net.Appender.Azure
 				case PartitionKeyTypeEnum.DateReverse:
 					// substract from DateMaxValue the Tick Count of the current hour
 					// so a Table Storage Partition spans an hour
-					return string.Format("{0:D19}",
-						(DateTime.MaxValue.Ticks -
-						 loggingEvent.TimeStamp.Date.AddHours(loggingEvent.TimeStamp.Hour).Ticks + 1));
+					return string.Format("{0:D19}", DateTime.MaxValue.Ticks - loggingEvent.TimeStamp.Date.AddHours(loggingEvent.TimeStamp.Hour).Ticks + 1);
 				default:
 					// ReSharper disable once NotResolvedInText
 					throw new ArgumentOutOfRangeException("PartitionKeyType", partitionKeyType, null);

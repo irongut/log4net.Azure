@@ -3,11 +3,11 @@ using System.Threading;
 
 namespace log4net.Azure.console
 {
-    class Program
+    internal static class Program
     {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        static void Main(string[] args)
+        private static void Main()
         {
             Log.Info("test");
             try
