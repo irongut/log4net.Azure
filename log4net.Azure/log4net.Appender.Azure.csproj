@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net472</TargetFramework>
+        <ProjectGuid>{8D052E38-F0D1-4108-A5AF-D33D596A586D}</ProjectGuid>
+        <TargetFrameworks>net472;netstandard20</TargetFrameworks>
         <RootNamespace>log4net.Appender.Azure</RootNamespace>
         <AssemblyTitle>log4net.Appender.Azure</AssemblyTitle>
         <Product>log4net.Appender.Azure</Product>
@@ -11,20 +12,18 @@
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <Copyright>(c) 2020 Dave Murray, (c) 2015 Karell Ste-Marie</Copyright>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-        <PackageTags>log4net, Azure Storage</PackageTags>
+        <PackageTags>log4net, azure, appender, logging, log, logfiles, diagnostics</PackageTags>
+        <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     </PropertyGroup>
+    
     <ItemGroup>
       <PackageReference Include="Azure.Storage.Blobs" Version="12.6.0" />
       <PackageReference Include="Azure.Storage.Queues" Version="12.4.2" />
       <PackageReference Include="log4net" Version="2.0.9" />
       <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.0.8" />
-      <PackageReference Include="Microsoft.Azure.KeyVault" Version="3.0.5" />
-      <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="3.0.5" />
-      <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+      <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
     </ItemGroup>
-    <ItemGroup>
-      <Reference Include="System.Configuration" />
-    </ItemGroup>
+    
     <ItemGroup>
       <None Include="..\LICENSE.md">
         <Pack>True</Pack>

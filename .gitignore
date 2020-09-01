@@ -365,3 +365,5 @@ MigrationBackup/
 
 # Azure Functions localsettings file
 local.settings.json
+
+.vs/log4net.Azure/DesignTimeBuild/.dtbcache.v2

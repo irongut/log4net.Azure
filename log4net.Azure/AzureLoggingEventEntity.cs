@@ -29,7 +29,7 @@ namespace log4net.Appender.Azure
             FileName = e.LocationInformation.FileName;
             LineNumber = e.LocationInformation.LineNumber;
             MethodName = e.LocationInformation.MethodName;
-            StackFrames = e.LocationInformation.StackFrames;
+            //StackFrames = e.LocationInformation.StackFrames;  property no longer present in log4net.Core: LoggingEvent.LocationInfo
 
             if (e.ExceptionObject != null)
             {
