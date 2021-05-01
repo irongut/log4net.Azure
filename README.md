@@ -1,3 +1,5 @@
+[![CI Build](https://github.com/irongut/log4net.Appender.Azure/actions/workflows/ci-build.yml/badge.svg)](https://github.com/irongut/log4net.Appender.Azure/actions/workflows/ci-build.yml)
+
 [![Stories in Ready](https://badge.waffle.io/stemarie/log4net.Azure.png?label=ready&title=Ready)](https://waffle.io/stemarie/log4net.Azure)
 #log4net.Azure
 
