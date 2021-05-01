@@ -26,7 +26,7 @@ Forked from log4net.Appender.Azure by karell.stemarie, added .Net Standard 2.0 c
       <PackageReference Include="Azure.Storage.Queues" Version="12.4.2" />
       <PackageReference Include="log4net" Version="2.0.12" />
       <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.0.8" />
-      <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+      <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     </ItemGroup>
     
     <ItemGroup>
