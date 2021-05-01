@@ -15,11 +15,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Setup .NET Core 3.1
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
@@ -30,6 +25,3 @@ jobs:
 
     - name: Build
       run: dotnet build --no-restore
-
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
